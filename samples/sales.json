@@ -1,0 +1,62 @@
+[
+  {
+    "_comment": "MONEY SHOT — B2C digital to a French consumer, no VAT charged, Stripe Tax off. Under OSS, FR 20% is due at the consumer's country.",
+    "object": "checkout.session",
+    "seller_name": "Valletta Software Ltd",
+    "seller_country": "MT",
+    "product_type": "digital",
+    "currency": "eur",
+    "amount_subtotal": 4900,
+    "total_details": { "amount_tax": 0 },
+    "automatic_tax": { "enabled": false },
+    "customer_details": { "address": { "country": "FR" }, "tax_ids": [] }
+  },
+  {
+    "_comment": "B2B intra-EU to a German business with VAT ID — reverse charge, 0% (correct).",
+    "object": "checkout.session",
+    "seller_name": "Valletta Software Ltd",
+    "seller_country": "MT",
+    "product_type": "saas",
+    "currency": "eur",
+    "amount_subtotal": 120000,
+    "total_details": { "amount_tax": 0 },
+    "automatic_tax": { "enabled": true },
+    "customer_details": { "address": { "country": "DE" }, "tax_ids": [ { "type": "eu_vat", "value": "DE811569869" } ] }
+  },
+  {
+    "_comment": "B2B intra-EU to a German business but 19% VAT charged in error (should be reverse charge).",
+    "object": "checkout.session",
+    "seller_name": "Valletta Software Ltd",
+    "seller_country": "MT",
+    "product_type": "saas",
+    "currency": "eur",
+    "amount_subtotal": 120000,
+    "total_details": { "amount_tax": 22800 },
+    "automatic_tax": { "enabled": false },
+    "customer_details": { "address": { "country": "DE" }, "tax_ids": [ { "type": "eu_vat", "value": "DE811569869" } ] }
+  },
+  {
+    "_comment": "Domestic Malta sale, 18% (correct).",
+    "object": "checkout.session",
+    "seller_name": "Valletta Software Ltd",
+    "seller_country": "MT",
+    "product_type": "digital",
+    "currency": "eur",
+    "amount_subtotal": 9900,
+    "total_details": { "amount_tax": 1782 },
+    "automatic_tax": { "enabled": true },
+    "customer_details": { "address": { "country": "MT" }, "tax_ids": [] }
+  },
+  {
+    "_comment": "B2C digital to a US consumer — outside EU VAT scope; flag US sales-tax nexus / Stripe Tax coverage.",
+    "object": "checkout.session",
+    "seller_name": "Valletta Software Ltd",
+    "seller_country": "MT",
+    "product_type": "digital",
+    "currency": "usd",
+    "amount_subtotal": 4900,
+    "total_details": { "amount_tax": 0 },
+    "automatic_tax": { "enabled": false },
+    "customer_details": { "address": { "country": "US" }, "tax_ids": [] }
+  }
+]

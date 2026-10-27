@@ -2,7 +2,7 @@
 
 Demonstrates VAT place-of-supply checks on Stripe-shaped sales using OpenAccountants sample rules, with an optional live MCP connection.
 
-Default runs use bundled sample responses. Their rates, verdicts and reviewer labels are illustrative fixtures, not evidence that an accountant reviewed the demo or a live Guide. For live use, check the fetched Guide's review status, reviewer, version and review date against the [review method](https://www.openaccountants.com/review-method). A jurisdiction lead's name alone does not establish review. Have a qualified professional review outputs before filing or acting on them.
+Default runs use bundled sample responses. Their rates, verdicts and reviewer labels are illustrative fixtures, not evidence that an accountant reviewed the demo or a live skill. For live use, check the fetched skill's review status, reviewer, version and review date against the [review method](https://www.openaccountants.com/review-method). A jurisdiction lead's name alone does not establish review. Have a qualified professional review outputs before filing or acting on them.
 
 ```
 Stripe sale
@@ -12,7 +12,7 @@ Stripe sale
                            ⚠️ under-charged — B2C digital VAT due at the customer's country (OSS)   ← the catch
                            ⚠️ VAT charged where reverse charge applies
                  · the rule that decided it (cited)
-                 · the Guide's published review status, if present
+                 · the skill's published review status, if present
 ```
 
 ![Stripe → OpenAccountants demo](demo.svg)
@@ -22,7 +22,7 @@ Stripe sale
 ## Why this is a partnership, not an overlap
 
 - **Stripe = the money rail** (+ Stripe Tax for *calculation*, but only where you're registered, across a narrow set of countries).
-- **OpenAccountants** loads Guide content through MCP for place-of-supply checks. Coverage and review status vary by Guide version.
+- **OpenAccountants** loads skill content through MCP for place-of-supply checks. Coverage and review status vary by skill version.
 
 Stripe Tax computes tax **only for the countries you've registered in**, and goes quiet everywhere else — exactly where mistakes (and liabilities) accumulate. OpenAccountants is the independent check that catches the long tail and the misconfigurations, without the merchant owning nexus research or hiring a CPA per country.
 
@@ -73,5 +73,5 @@ python pipeline.py
 
 ## Honest notes
 
-- `vat_check.py` is a **deliberate simplification** (domestic / intra-EU B2B reverse charge / intra-EU B2C-digital OSS / non-EU); distance-selling thresholds, exemptions, and goods specifics are omitted. Production leans on the full OA skill + an agent step; professional review must be established for the specific Guide version and your facts.
+- `vat_check.py` is a **deliberate simplification** (domestic / intra-EU B2B reverse charge / intra-EU B2C-digital OSS / non-EU); distance-selling thresholds, exemptions, and goods specifics are omitted. Production leans on the full OA skill + an agent step; professional review must be established for the specific skill version and your facts.
 - The bundled reviewer label is illustrative. Inspect the actual `get_skill` response and its review record in live mode.
